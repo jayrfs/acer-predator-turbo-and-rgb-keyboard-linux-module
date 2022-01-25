@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import sys
 from pathlib import Path
 
 PAYLOAD_SIZE = 16
@@ -153,7 +154,11 @@ if args.save:
         vars(args).pop('load')
         json.dump(vars(args), f, indent=4)
 
-if args.mode == 0:
+if len(sys.argv) == 1:
+    print("ooh la la")
+    sys.exit()
+
+elif args.mode == 0:
     # Static coloring mode
     payload = [0] * PAYLOAD_SIZE_STATIC_MODE
     if args.zone < 1 or args.zone > 8:
